@@ -1,7 +1,12 @@
 # Comprimarea / Decomprimarea / Oglindirea imaginilor folosind arbori cuaternari
 
 Programul lucreaza cu imagini in format .ppm, iar plecand de la structura lor caracteristica se realizeaza o serie de modificari asupra lor. Pixelii sunt reprezentati in forma unor frunze de arbori cuaternari, iar imaginea in forma unui arbore de pixeli.
-Mai jos sunt exprimate functionalitatile programului.
+Am inclus si cateva teste in scopul de a demonstra ca programul realizeaza operatiunile cu succes. Operatiile posibile sunt urmatoarele si pot si apelate astfel:
+- Compresia unei imagini: `-c [limita_compresie] [nume_fisier_necomprimat] [nume_fisier_final]`
+- Decompresia unei imagini: `-d [nume_fisier_comprimat] [nume_fisier_final]`
+- Oglindirea orizontala/verticala a unei imagini : `-m h/v [limita_compresie] [nume_fisier_necomprimat] [nume_fisier_final]`
+
+Mai jos se intra in detaliu legat de aceste operatii, urmarind elementele cheie ale programului.
 
 ## Main
 In main se apeleaza functiile care corespund cu cerintele date de argumente: comprimarea, decomprimarea, si oglindirea.
