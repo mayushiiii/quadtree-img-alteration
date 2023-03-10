@@ -1,0 +1,75 @@
+
+_____________________________________main______________________________________
+
+in main se apeleaza functiile care corespund cu cerintele date de argumente:
+comprimarea, decomprimarea, si oglindirea.
+toate aceste 3 mari cerinte au in comun diverse instructiuni, de exemplu:
+- decomprimarea e opusul comprimarii cu mici exceptii
+- oglindirea pleaca tot de la comprimare
+
+oglindirea si comprimarea incep la fel, in sensul ca intai trebuie extrasa 
+matricea de pixeli a fisierului, apoi realizat arborele de comprimare. 
+diferenta vine in prelucrarile facute dupa acest punct: la compresie se 
+realizeaza vectorul de comprimare, iar apoi introducerea acestuia in fisierul 
+tip .out, in timp ce la oglindire se stabileste tipul de oglindire, se aplica,
+iar apoi se scrie un nou fisier .ppm (care poate fi si vizualizat)
+
+decompresia foloseste acelasi tipar de fisier ca si cele rezultate in urma 
+compresiei, deci are loc citirea formatului respectiv, apoi vin pasii opusi
+algoritmului de compresie: se realizeaza arborele de compresie pe baza 
+vectorului citit, si se reconstituie imaginea finala prin algoritmul de
+decompresie.
+
+se elibereaza si memoria aici.
+
+________________________________image compression______________________________
+
+imaginea finala depinde de limita aleasa pentru media culorilor pixelilor.
+
+in functie se afla/extrag intai toate datele ce corespund nodului curent:
+- aria pe care o acopera
+- matricea de valori rgb care ii corespunde
+- media valorilor rgb din matrice
+- indexul la momentul respectiv
+
+se calculeaza mean-ul pe baza unei formule, iar apoi, comparand mean-ul 
+cu limita noastra, decidem daca continuam sa apelam functia sau nu.
+
+in main, cum am zis si mai sus, se afla nr de frunze iar apoi, avand toate datele
+necesare, se introduc in fisier.
+
+_______________________________image decompression_____________________________
+
+e in 90% din privinte inversul compresiei, singura treaba a fost ca nu am putut
+utiliza/afla matricea de valori rgb corespondenta fiecarul element din nod aici,
+deci am initializat-o cu NULL. din cauza asta si in functia de free a arborelui
+are loc o verificare daca exista ceva de eliberat sau nu.
+
+extragem din fisierul .out intai numarul de noduri si de frunze, iar apoi tot 
+vectorul corespondent imaginii. este apelata o functie care transforma vectorul
+in arbore; aici se atribuie valorile nodului si se continua pana nu mai sunt
+frunze neparcurse.
+
+in main imi atribui caracteristicile imaginii, iar apoi apelez functia de 
+decompresie, care introduce in mod recursiv (ca si cam orice din tema asta) 
+valorile rgb din noduri in matricea imaginii. odata ce matricea este 
+determinata, se scriu datele in fisierul final.
+
+______________________________image mirroring__________________________________
+
+cum spuneam, inceputul este acelasi ca si cel de la algoritmul de compresie,
+avand in vedere ca trebuie citite aceleasi date din acelasi tip de fisier.
+se extrage imaginea, se realizeaza arborele de compresie, se afla tipul de
+oglindire si apoi se realizeaza. 
+
+oglindirea consta pur si simplu in inversarea anumitor noduri din arbore, in
+functie de tipul de oglindire; pentru asta se apeleaza functia de swap.
+
+apelez functia de decompresie pentru a-mi reconstitui imaginea finala, si
+in final introduc datele (caracteristicile imaginii + matricea de pixeli)
+in fisierul final ppm.
+_______________________________________________________________________________
+
+in rest singura mentiune de facut ar mai fi catre functia de get_image, care
+citeste fisierul de input cu datele necesare, le introduce in structura cu
+datele imaginii, si apoi realizeaza matricea de pixeli pe baza valorilor rgb.
